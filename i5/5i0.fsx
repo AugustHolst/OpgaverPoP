@@ -21,10 +21,8 @@ let dropFirstColumn (table : 'a list list) : 'a list list =
 
 printfn "%A" (dropFirstColumn exampleList)
 
-(*
-let transpose (table : 'a list list) : 'a list list =
-    let mutable acc = table
-    List.map (fun x -> acc <- (firstColumn(dropFirstColumn acc))) table
+let rec transpose (table : 'a list list) : 'a list list =
+    if table.Head.Length = 0 then []
+    else firstColumn table :: transpose (dropFirstColumn table)
 
-printf "%A" (transpose exampleList)
-*)
+printfn "%A" (transpose exampleList)
